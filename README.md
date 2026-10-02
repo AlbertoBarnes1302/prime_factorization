@@ -32,3 +32,10 @@ Factoring integers is a common need in number theory and cryptography-adjacent c
 - `is_prime(n: int) -> bool`
 - `prime_factors(n: int) -> list[int]`
 - `factorize(n: int) -> dict[int, int]`
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
